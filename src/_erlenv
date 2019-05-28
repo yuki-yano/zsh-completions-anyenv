@@ -1,0 +1,13 @@
+#compdef erlenv
+
+_erlenv() {
+	local -a cmds
+
+	if (( CURRENT == 2 )); then
+		cmds=( $(erlenv commands) )
+		_describe -t commands "all commands" cmds
+	else
+		cmds=( $(erlenv completions ${words[2]}) )
+		_describe -t commands "sub commands" cmds
+	fi
+}

@@ -1,0 +1,13 @@
+#compdef phpenv
+
+_phpenv() {
+	local -a cmds
+
+	if (( CURRENT == 2 )); then
+		cmds=( $(phpenv commands) )
+		_describe -t commands "all commands" cmds
+	else
+		cmds=( $(phpenv completions ${words[2]}) )
+		_describe -t commands "sub commands" cmds
+	fi
+}

@@ -1,0 +1,13 @@
+#compdef swiftenv
+
+_swiftenv() {
+	local -a cmds
+
+	if (( CURRENT == 2 )); then
+		cmds=( $(swiftenv commands) )
+		_describe -t commands "all commands" cmds
+	else
+		cmds=( $(swiftenv completions ${words[2]}) )
+		_describe -t commands "sub commands" cmds
+	fi
+}
