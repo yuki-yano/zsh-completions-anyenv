@@ -1,13 +1,14 @@
 #compdef nodenv
 
 _nodenv() {
-	local -a cmds
+  local -a cmds
 
-	if (( CURRENT == 2 )); then
-		cmds=( $(nodenv commands) )
-		_describe -t commands "all commands" cmds
-	else
-		cmds=( $(nodenv completions ${words[2]}) )
-		_describe -t commands "sub commands" cmds
-	fi
+  if (( CURRENT == 2 )); then
+    cmds=( $(nodenv commands) )
+    _describe -t commands "all commands" cmds
+  else
+    shift words
+    cmds=( $(nodenv completions ${words}) )
+    _describe -t commands "sub commands" cmds
+  fi
 }

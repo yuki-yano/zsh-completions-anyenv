@@ -1,13 +1,14 @@
 #compdef pyenv
 
 _pyenv() {
-	local -a cmds
+  local -a cmds
 
-	if (( CURRENT == 2 )); then
-		cmds=( $(pyenv commands) )
-		_describe -t commands "all commands" cmds
-	else
-		cmds=( $(pyenv completions ${words[2]}) )
-		_describe -t commands "sub commands" cmds
-	fi
+  if (( CURRENT == 2 )); then
+    cmds=( $(pyenv commands) )
+    _describe -t commands "all commands" cmds
+  else
+    shift words
+    cmds=( $(pyenv completions ${words}) )
+    _describe -t commands "sub commands" cmds
+  fi
 }

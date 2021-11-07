@@ -1,13 +1,14 @@
 #compdef rbenv
 
 _rbenv() {
-	local -a cmds
+  local -a cmds
 
-	if (( CURRENT == 2 )); then
-		cmds=( $(rbenv commands) )
-		_describe -t commands "all commands" cmds
-	else
-		cmds=( $(rbenv completions ${words[2]}) )
-		_describe -t commands "sub commands" cmds
-	fi
+  if (( CURRENT == 2 )); then
+    cmds=( $(rbenv commands) )
+    _describe -t commands "all commands" cmds
+  else
+    shift words
+    cmds=( $(rbenv completions ${words}) )
+    _describe -t commands "sub commands" cmds
+  fi
 }
